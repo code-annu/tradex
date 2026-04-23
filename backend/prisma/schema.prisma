@@ -1,0 +1,48 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Profile {
+  uuid       String    @id @db.Uuid
+  dob        DateTime? @db.Date
+  gender     String?   @db.VarChar(20)
+  bio        String?
+  avatar_url String?
+  created_at DateTime  @default(now()) @db.Timestamp(6)
+  updated_at DateTime  @default(now()) @db.Timestamp(6)
+  user       User      @relation(fields: [uuid], references: [uuid], onDelete: Cascade, onUpdate: NoAction, map: "fk_profiles_user")
+
+  @@map("profiles")
+}
+
+
+model Session {
+  uuid       String   @id @default(uuid()) @db.Uuid
+  token      String   @unique
+  expires_at DateTime @db.Timestamp(6)
+  user_id    String   @db.Uuid
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  user       User     @relation(fields: [user_id], references: [uuid], onDelete: Cascade, onUpdate: NoAction, map: "fk_sessions_user")
+
+  @@map("sessions")
+}
+
+model User {
+  uuid          String    @id @default(uuid()) @db.Uuid
+  fullname      String    @db.VarChar(100)
+  email         String    @unique @db.VarChar(255)
+  password_hash String
+  is_verified   Boolean   @default(false)
+  deleted_at    DateTime? @db.Timestamp(6)
+  created_at    DateTime  @default(now()) @db.Timestamp(6)
+  updated_at    DateTime  @default(now()) @db.Timestamp(6)
+  profile       Profile?
+  sessions      Session[]
+
+  @@map("users")
+}
