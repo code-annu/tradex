@@ -2,7 +2,7 @@ import { inject, injectable } from "inversify";
 import TYPES from "../../di/inversify.types";
 import AuthRepository from "./auth.repository";
 import { User } from "./auth.types";
-import AuthValidator from "../../validator/auth.validator";
+import UserValidator from "../../validator/user.validator";
 import { LoginInput, SignupUserInput, UserWithSession } from "./auth.dto";
 import * as bcrypt from "bcrypt";
 import { UnauthorizedError } from "../../error/errors";
@@ -14,7 +14,7 @@ export default class AuthService {
     @inject(TYPES.AuthRepository)
     private readonly authRepo: AuthRepository,
     @inject(TYPES.AuthValidator)
-    private readonly authValidator: AuthValidator,
+    private readonly authValidator: UserValidator,
   ) {}
 
   public signup = async (input: SignupUserInput): Promise<UserWithSession> => {

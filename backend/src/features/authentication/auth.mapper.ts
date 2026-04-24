@@ -14,6 +14,7 @@ export default abstract class AuthMapper {
       email: user.email,
       passwordHash: user.password_hash,
       isVerified: user.is_verified,
+      deletedAt: user.deleted_at,
       createdAt: user.created_at,
       updatedAt: user.updated_at,
     };

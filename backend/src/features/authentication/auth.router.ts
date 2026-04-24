@@ -9,9 +9,21 @@ const authRouter = Router();
 
 const authController = container.get<AuthController>(TYPES.AuthController);
 
-authRouter.post("/signup", validateRequestBody(signupSchema), authController.signup);
-authRouter.post("/login", validateRequestBody(loginSchema), authController.login);
-authRouter.post("/refresh-token", validateRequestBody(refreshTokenSchema), authController.refreshToken);
+authRouter.post(
+  "/signup",
+  validateRequestBody(signupSchema),
+  authController.signup,
+);
+authRouter.post(
+  "/login",
+  validateRequestBody(loginSchema),
+  authController.login,
+);
+authRouter.post(
+  "/refresh-token",
+  validateRequestBody(refreshTokenSchema),
+  authController.refreshToken,
+);
 authRouter.post("/logout", authController.logout);
 
 export default authRouter;

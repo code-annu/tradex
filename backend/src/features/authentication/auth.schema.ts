@@ -5,9 +5,7 @@ export const signupSchema = z.object({
     .string({ error: "Full name is required" })
     .min(2, "Full name must be at least 2 characters")
     .max(100, "Full name must be at most 100 characters"),
-  email: z
-    .string({ error: "Email is required" })
-    .email("Invalid email address"),
+  email: z.email({ error: "Invalid email address" }),
   password: z
     .string({ error: "Password is required" })
     .min(8, "Password must be at least 8 characters")
@@ -15,16 +13,12 @@ export const signupSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z
-    .string({ error: "Email is required" })
-    .email("Invalid email address"),
+  email: z.email({ error: "Invalid email address" }),
   password: z
     .string({ error: "Password is required" })
     .min(1, "Password is required"),
 });
 
 export const refreshTokenSchema = z.object({
-  token: z
-    .string({ error: "Token is required" })
-    .min(1, "Token is required"),
+  token: z.string({ error: "Token is required" }).min(1, "Token is required"),
 });

@@ -4,6 +4,7 @@ export interface User {
   email: string;
   passwordHash: string;
   isVerified: boolean;
+  deletedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
 }
