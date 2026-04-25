@@ -13,7 +13,7 @@ export default class AuthService {
   constructor(
     @inject(TYPES.AuthRepository)
     private readonly authRepo: AuthRepository,
-    @inject(TYPES.AuthValidator)
+    @inject(TYPES.UserValidator)
     private readonly authValidator: UserValidator,
   ) {}
 
