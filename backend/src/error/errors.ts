@@ -37,6 +37,12 @@ export class UnprocessableEntityError extends AppError {
   }
 }
 
+export class InsufficientBalanceError extends AppError {
+  constructor(message: string) {
+    super(message, 422, ErrorType.INSUFFICIENT_BALANCE_ERROR);
+  }
+}
+
 export class ConflictError extends AppError {
   constructor(message: string) {
     super(message, 409, ErrorType.CONFLICT_ERROR);
